@@ -49,18 +49,21 @@ export default function Page() {
         </NavigationMenu>
       </header>
 
-      <main className="grid grid-cols-1 items-start gap-4 p-6 md:grid-cols-3">
-        {boxes.map((box) => (
-          <Accordion
-            key={box.title}
-            className="rounded-lg border px-4"
-          >
-            <AccordionItem value={box.title}>
-              <AccordionTrigger>{box.title}</AccordionTrigger>
-              <AccordionContent>{box.body}</AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        ))}
+      <main className="p-6">
+        <h1 className="mb-6 text-6xl font-bold tracking-tight">Facet</h1>
+        <div className="grid grid-cols-1 items-start gap-4 md:grid-cols-3">
+          {boxes.map((box) => (
+            <Accordion
+              key={box.title}
+              className="rounded-lg border px-4"
+            >
+              <AccordionItem value={box.title}>
+                <AccordionTrigger>{box.title}</AccordionTrigger>
+                <AccordionContent>{box.body}</AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          ))}
+        </div>
       </main>
     </div>
   )
