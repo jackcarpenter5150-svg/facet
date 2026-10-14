@@ -1,19 +1,67 @@
-import { Button } from "@/components/ui/button"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu"
+
+const menuItems = ["Home", "Products", "Resources", "About", "Contact"]
+
+const boxes = [
+  {
+    title: "Overview",
+    body: "A short summary of what this section covers and why it matters.",
+  },
+  {
+    title: "Details",
+    body: "More in-depth information goes here, including specifics and context.",
+  },
+  {
+    title: "Next steps",
+    body: "Actions to take next, links to related content, or follow-up items.",
+  },
+]
 
 export default function Page() {
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
-      </div>
+    <div className="min-h-svh">
+      <header className="border-b px-6 py-3">
+        <NavigationMenu>
+          <NavigationMenuList>
+            {menuItems.map((item) => (
+              <NavigationMenuItem key={item}>
+                <NavigationMenuLink
+                  href="#"
+                  className={navigationMenuTriggerStyle()}
+                >
+                  {item}
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu>
+      </header>
+
+      <main className="grid grid-cols-1 items-start gap-4 p-6 md:grid-cols-3">
+        {boxes.map((box) => (
+          <Accordion
+            key={box.title}
+            className="rounded-lg border px-4"
+          >
+            <AccordionItem value={box.title}>
+              <AccordionTrigger>{box.title}</AccordionTrigger>
+              <AccordionContent>{box.body}</AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        ))}
+      </main>
     </div>
   )
 }
